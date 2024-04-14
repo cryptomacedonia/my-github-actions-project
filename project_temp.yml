@@ -1,0 +1,112 @@
+name: Multi Echo
+options:
+  bundleIdPrefix: com.app.MultiEcho
+  deploymentTarget:
+    iOS: '17.0'
+configurations:
+  Debug:
+    buildSettings:
+      SWIFT_OPTIMIZATION_LEVEL: '-Onone'
+  Release:
+    buildSettings:
+      SWIFT_OPTIMIZATION_LEVEL: '-Owholemodule'
+targets:
+  Multi Echo:
+    type: application
+    platform: iOS
+    sources:
+    - Multi Echo/Sources
+    resources:
+    - Multi Echo/Resources
+    product_name: Multi Echo
+    settings:
+      DISPLAY_NAME: Multi Echo
+      ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+      CODE_SIGN_STYLE: Automatic
+      CURRENT_PROJECT_VERSION: 1
+      DEVELOPMENT_TEAM: GF7K354RN3
+      ENABLE_PREVIEWS: 'YES'
+      GENERATE_INFOPLIST_FILE: 'YES'
+      INFOPLIST_KEY_UIApplicationSceneManifest_Generation: 'YES'
+      INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: 'YES'
+      INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+      LD_RUNPATH_SEARCH_PATHS:
+      - $(inherited)
+      - '@executable_path/Frameworks'
+      MARKETING_VERSION: 1
+      PRODUCT_BUNDLE_IDENTIFIER: com.app.MultiEcho
+      PRODUCT_NAME: $(TARGET_NAME)
+      SWIFT_EMIT_LOC_STRINGS: 'YES'
+      SWIFT_VERSION: 5
+      TARGETED_DEVICE_FAMILY: 1,2
+    signing:
+      developmentTeam: GF7K354RN3
+      automatic: true
+    dependencies:
+    - package: Facebook
+      product: FacebookAEM
+    - package: Facebook
+      product: FacebookCore
+    - package: Facebook
+      product: FacebookLogin
+    - package: GoogleSignIn
+      product: GoogleSignIn
+    - package: GoogleSignIn
+      product: GoogleSignInSwift
+    - package: Alamofire
+      product: Alamofire
+    - package: AnyCodable
+      product: AnyCodable
+    - package: Pulse
+      product: Pulse
+    - package: Pulse
+      product: PulseUI
+    - package: SFRouting
+      product: SFRouting
+    - package: Kingfisher
+      product: Kingfisher
+packages:
+  Facebook:
+    url: https://github.com/facebook/facebook-ios-sdk
+    branch: main
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    branch: main
+  Alamofire:
+    url: https://github.com/Alamofire/Alamofire
+    branch: master
+  AnyCodable:
+    url: https://github.com/Flight-School/AnyCodable
+    branch: master
+  Pulse:
+    url: https://github.com/kean/Pulse
+    branch: main
+  SFRouting:
+    url: https://github.com/scalefocus/SFRouting
+    branch: main
+  Kingfisher:
+    url: https://github.com/onevcat/Kingfisher
+    branch: master
+dependencies:
+- package: Facebook
+  products:
+  - FacebookAEM
+  - FacebookLogin
+  - FacebookCore
+  - FacebookShare
+- package: GoogleSignIn
+  product: GoogleSignIn
+- package: GoogleSignIn
+  product: GoogleSignInSwift
+- package: Alamofire
+  product: Alamofire
+- package: AnyCodable
+  product: AnyCodable
+- package: Pulse
+  product: Pulse
+- package: Pulse
+  product: PulseUI
+- package: SFRouting
+  product: SFRouting
+- package: Kingfisher
+  product: Kingfisher
