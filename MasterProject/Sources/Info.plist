@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>fb608894693617391</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb608894693617391</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.googleusercontent.apps.884471026749-9obflaca7ke57scpiim5h8e29jqblctc</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.884471026749-9obflaca7ke57scpiim5h8e29jqblctc</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>608894693617391</string>
+	<key>FacebookClientToken</key>
+	<string>f6036daf00c709fcfcaf57babe59e08e</string>
+	<key>GIDClientID</key>
+	<string>884471026749-9obflaca7ke57scpiim5h8e29jqblctc.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fbauth</string>
+		<string>fbauth2</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>background</string>
+		<key>UIImageName</key>
+		<string>logo</string>
+	</dict>
+</dict>
+</plist>

@@ -15,9 +15,9 @@ targets:
     type: application
     platform: iOS
     sources:
-    - Multi Echo/Sources
+    - MasterProject/Sources
     resources:
-    - Multi Echo/Resources
+    - MasterProject/Resources
     product_name: Multi Echo
     settings:
       DISPLAY_NAME: Multi Echo

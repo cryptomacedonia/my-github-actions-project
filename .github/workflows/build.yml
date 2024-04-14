@@ -15,34 +15,45 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: latest
+      - name: Commit Changes
+        run: |
+          UNIQUE_ID="${{ github.event.inputs.uniqueId }}"
+          COMMIT_MESSAGE="Generated project for uniqueId: $UNIQUE_ID"
+          git config --global user.name "cryptomacedonia"
+          git config --global user.email "cryptomacedonia@edit8.com"
+          git add .
+          git commit --allow-empty -m "$COMMIT_MESSAGE"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
 
-    - name: Install XcodeGen
-      run: brew install xcodegen
 
-    - name: Generate Xcode Project
-      run: xcodegen generate -s project_temp.yml
+      - name: Push Changes
+        if: success()
+        run: |
+          git push https://<cryptomacedonia>:${{ secrets.PAT }}@github.com/cryptomacedonia/my-github-actions-project.git
+        shell: bash
+      
 
-    - name: Find Xcode Project File
-      id: find_project
-      run: |
-        PROJECT_PATH=$(find . -name '*.xcodeproj' -print -quit)
-        echo "PROJECT_PATH=$PROJECT_PATH" >> $GITHUB_ENV
-        PROJECT_NAME=$(basename "$PROJECT_PATH")
-        echo "::set-output name=project_name::$PROJECT_NAME"
+      - name: Install XcodeGen
+        run: brew install xcodegen
 
-    - name: Archive Project
-      run: |
-        ZIP_NAME="${{ steps.find_project.outputs.project_name }}-${{ github.event.inputs.uniqueId }}.zip"
-        zip -r "$ZIP_NAME" "${{ env.PROJECT_PATH }}"
+      - name: Find Xcode Project File
+        id: find_project
+        run: |
+          PROJECT_PATH=$(find . -name '*.xcodeproj' -print -quit)
+          echo "PROJECT_PATH=$PROJECT_PATH" >> $GITHUB_ENV
+          PROJECT_NAME=$(basename "$PROJECT_PATH")
+          echo "::set-output name=project_name::$PROJECT_NAME"
 
-    - name: Upload ZIP as Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: project-zip-${{ github.event.inputs.uniqueId }}
-        path: ${{ steps.find_project.outputs.project_name }}-${{ github.event.inputs.uniqueId }}.zip
+      - name: Archive Project
+        run: |
+          zip -r "${{ steps.find_project.outputs.project_name }}-${{ github.event.inputs.uniqueId }}.zip" "${{ env.PROJECT_PATH }}"
 
+      - name: Upload ZIP as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: project-zip-${{ github.event.inputs.uniqueId }}
+          path: ${{ steps.find_project.outputs.project_name }}-${{ github.event.inputs.uniqueId }}.zip
