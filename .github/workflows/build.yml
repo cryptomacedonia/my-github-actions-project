@@ -16,27 +16,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Commit Changes
-        run: |
-          UNIQUE_ID="${{ github.event.inputs.uniqueId }}"
-          COMMIT_MESSAGE="Generated project for uniqueId: $UNIQUE_ID"
-          git config --global user.name "cryptomacedonia"
-          git config --global user.email "cryptomacedonia@edit8.com"
-          git add .
-          git commit --allow-empty -m "$COMMIT_MESSAGE"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-
-
-      - name: Push Changes
-        if: success()
-        run: |
-          git push https://<cryptomacedonia>:${{ secrets.PAT }}@github.com/cryptomacedonia/my-github-actions-project.git
-        shell: bash
-      
-
+      - name: Set Workflow Run Label
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "uniqueId=${{ github.event.inputs.uniqueId }}" >> $GITHUB_ENV
       - name: Install XcodeGen
         run: brew install xcodegen
 
